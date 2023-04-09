@@ -1,0 +1,16 @@
+[StartTime]
+gimbal part 1-Static 1.MFC=1s
+[SolverState]
+gimbal part 1-Static 1.MFC=2
+[MainFrame]
+gimbal part 1-Static 1.MFC=MCAAAAAAAAAAAAAABAAAAAAAPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPMADAAAAADLBAAAAAEHEAAAAAGICAAAAA
+[ShowMin]
+gimbal part 1-Static 1.MFC=No
+[SolverType]
+gimbal part 1-Static 1.MFC=Linear Analysis
+[StudyType]
+gimbal part 1-Static 1.MFC=0
+[StudyName]
+gimbal part 1-Static 1.MFC=Static 1
+[Solver]
+gimbal part 1-Static 1.MFC=Sparse

@@ -1,0 +1,16 @@
+[StartTime]
+FPV_Arm-Static 2.MFC=2s
+[SolverState]
+FPV_Arm-Static 2.MFC=2
+[MainFrame]
+FPV_Arm-Static 2.MFC=MCAAAAAAAAAAAAAABAAAAAAAPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPMADAAAAADLBAAAAAEHEAAAAAGICAAAAA
+[ShowMin]
+FPV_Arm-Static 2.MFC=No
+[SolverType]
+FPV_Arm-Static 2.MFC=Linear Analysis
+[StudyType]
+FPV_Arm-Static 2.MFC=0
+[StudyName]
+FPV_Arm-Static 2.MFC=Static 2
+[Solver]
+FPV_Arm-Static 2.MFC=Sparse
