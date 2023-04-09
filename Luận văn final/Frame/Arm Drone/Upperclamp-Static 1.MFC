@@ -1,0 +1,16 @@
+[StartTime]
+Upperclamp-Static 1.MFC=1s
+[SolverState]
+Upperclamp-Static 1.MFC=2
+[MainFrame]
+Upperclamp-Static 1.MFC=MCAAAAAAAAAAAAAABAAAAAAAPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPMADAAAAADLBAAAAAEHEAAAAAGICAAAAA
+[ShowMin]
+Upperclamp-Static 1.MFC=No
+[SolverType]
+Upperclamp-Static 1.MFC=Linear Analysis
+[StudyType]
+Upperclamp-Static 1.MFC=0
+[StudyName]
+Upperclamp-Static 1.MFC=Static 1
+[Solver]
+Upperclamp-Static 1.MFC=Sparse

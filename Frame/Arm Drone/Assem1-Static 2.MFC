@@ -1,0 +1,16 @@
+[StartTime]
+Assem1-Static 2.MFC=1m:14s
+[SolverState]
+Assem1-Static 2.MFC=2
+[MainFrame]
+Assem1-Static 2.MFC=MCAAAAAAAAAAAAAABAAAAAAAPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPMADAAAAADLBAAAAAEHEAAAAAGICAAAAA
+[ShowMin]
+Assem1-Static 2.MFC=No
+[SolverType]
+Assem1-Static 2.MFC=Linear Analysis
+[StudyType]
+Assem1-Static 2.MFC=0
+[StudyName]
+Assem1-Static 2.MFC=Static 2
+[Solver]
+Assem1-Static 2.MFC=Sparse

@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Setup style cho html -->
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial;
+      padding: 20px;
+      background: #f2f2f2f1;
+    }
+
+    /* Header/Blog Title */
+    .header {
+      padding: 30px;
+      text-align: center;
+      background: rgb(43, 118, 168);
+    }
+
+    .header h1 {
+      font-size: 50px;
+    }
+
+    /* Style the top navigation bar */
+    .topnav {
+      overflow: hidden;
+      background-color: rgb(0, 0, 0);
+    }
+
+    /* Style the topnav links */
+    .topnav a {
+      float: left;
+      display: block;
+      color: #f2f2f2;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+    }
+
+    /* Change color on hover */
+    .topnav a:hover {
+      background-color: rgb(85, 85, 85);
+      color: black;
+    }
+
+    /* Create two unequal columns that floats next to each other */
+    /* Left column */
+    .leftcolumn {
+      float: left;
+      width: 75%;
+    }
+
+    /* Right column */
+    .rightcolumn {
+      float: left;
+      width: 25%;
+      background-color: #f1f1f1;
+      padding-left: 20px;
+      padding-right: 20px;
+
+    }
+
+    /* Fake image */
+    .fakeimg {
+      background-color: rgb(122, 121, 121);
+      width: 100%;
+      padding: 20px;
+    }
+
+    /* Add a card effect for articles */
+    .card {
+      background-color: white;
+      padding: 20px;
+      margin-top: 20px;
+      padding-top: 20px;
+
+    }
+
+    /* Clear floats after the columns */
+    .row:after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+
+    /* Footer */
+    .footer {
+      padding: 20px;
+      text-align: center;
+      background: #ddd;
+      margin-top: 20px;
+    }
+
+    /* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other */
+    @media screen and (max-width: 900px) {
+
+      .leftcolumn,
+      .rightcolumn {
+        width: 100%;
+        padding: 0;
+      }
+    }
+
+    /* Responsive layout - when the screen is less than 400px wide, make the navigation links stack on top of each other instead of next to each other */
+    @media screen and (max-width: 400px) {
+      .topnav a {
+        float: none;
+        width: 100%;
+      }
+    }
+
+    #map {
+      height: 500px;
+      width: 100%;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- setup cac ung dung -->
+
+  <div class="header">
+    <h1>Drone Detect Human</h1>
+    <p>(Luan van tot nghiep)</p>
+  </div>
+
+  <div class="topnav">
+    <a href="https://www.youtube.com/watch?v=LhblJgR9k-0" target="_blank" >Video Source</a>
+  </div>
+
+  <div class="row">
+    <div class="leftcolumn">
+      <div class="card">
+        <h2>Livestream liveview</h2>
+        <h5>Detect System, May 7, 2022</h5>
+        <!--img src="messi.jpg" style="width:100%">
+        <------------------------------------------------------------------------->
+        <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-database.js"></script>
+        <div class="col-lg-8  offset-lg-2">
+          <img src="{{ url_for('video_feed') }}" width=100% >
+        </div>
+        <!------------------------------------------------------------------------->
+      </div>
+    </div>
+
+    <div class="rightcolumn">
+      <div class="card">
+        <h2>Location</h2>
+        <h2 style="font-size: 17px;">Lat: <span id="latitude"></span></h2>
+        <h2 style="font-size: 17px;">Lng: <span id="longtitude"></span></h2>
+        <h2 style="font-size: 17px;">Numer of people: <span id="data"></span></h2>
+      </div>
+      <div class="card">
+        <h3>Google Map</h3>
+        <div id="map"></div>
+      </div>
+    </div>
+    <script>
+      let img = document.querySelector('img');
+      let Upload=document.querySelector('#Upload');
+      Upload.addEventListener('click', () => {
+        img.src = 'messi.jpg';
+      })
+    </script>
+    <script>
+      var lat, long;
+      var lat, long;
+      let map, poly;
+      var lineCoords = [];
+      const firebaseConfig = {
+        apiKey: "AIzaSyBF2penUmgIwPTYSLsFNmCwI-uUihUjgd0",
+        authDomain: "gps-esp-866f2.firebaseapp.com",
+        databaseURL: "https://gps-esp-866f2-default-rtdb.asia-southeast1.firebasedatabase.app",
+        projectId: "gps-esp-866f2",
+        storageBucket: "gps-esp-866f2.appspot.com",
+        messagingSenderId: "498462527921",
+        appId: "1:498462527921:web:8eac987d0ce6237c332d90",
+        measurementId: "G-BRFQR8NS4X"
+      };
+
+      firebase.initializeApp(firebaseConfig);
+      var database = firebase.database();
+      /*firebase.database().ref("/test").update({
+        "c": 2
+      })*/
+      database.ref("/test").on('value', function (snapshot) {
+        document.getElementById("data").innerHTML = snapshot.val().d;
+      });
+      database.ref("/test").on('value', function (snapshot) {
+        document.getElementById("latitude").innerHTML = snapshot.val().a;
+        document.getElementById("longtitude").innerHTML = snapshot.val().b;
+      });
+      function initMap(lat, long) {
+        database.ref("/test").on('value', function (snapshot) {
+          c = snapshot.val().f;
+          c = c.toString();
+          console.log(c);
+          document.getElementById("latitude").innerHTML = snapshot.val().a;
+          document.getElementById("longtitude").innerHTML = snapshot.val().b;
+          if (c != '0') {
+            database.ref("/test").once('value', function (snapshot) {
+              lat = snapshot.val().a;
+              long = snapshot.val().b;
+              person = snapshot.val().d
+              addmarker(lat, long, map, person);
+
+            });
+            database.ref("/test").child('f').set(0);
+          }
+          else { }
+
+        });
+        database.ref("/test").on('value', function (snapshot) {
+          addLatLng(snapshot.val().a, snapshot.val().b, map);
+        });
+
+        const uluru = { lat: 10.753402, lng: 106.606646 };
+        const map = new google.maps.Map(document.getElementById("map"), {
+          zoom: 15,
+          center: uluru,
+        });
+
+        window.initMap = initMap;
+
+      }
+      function addmarker(lat, long, map, person) {
+        // The marker, positioned at Uluru
+
+        var myLatLng = { lat: lat, lng: long };
+        u = myLatLng.lat
+        y = myLatLng.lng
+        y = y.toString();
+        u = u.toString();
+        console.log(u);
+        new google.maps.Marker({
+          position: myLatLng,
+          map: map,
+          title: "lat: " + u + " " + " long: " + y + " so nguoi: " + person,
+          draggable: false,
+
+        });
+
+        const infowindow = new google.maps.InfoWindow({
+          content: "<p>Marker Location:" + marker.getPosition() + "</p>",
+        });
+
+        google.maps.event.addListener(marker, "click", () => {
+          infowindow.open(map, marker);
+        });
+      }
+      function addLatLng(lat, long, map) {
+        lineCoords.push(new google.maps.LatLng(lat, long));
+        poly = new google.maps.Polyline({
+          path: lineCoords,
+          strokeColor: "#0032bd",
+          strokeOpacity: 5,
+          strokeWeight: 3,
+          map: map
+        });
+        poly.setMap(map);
+      }
+      window.initMap = initMap;
+
+    </script>
+    <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBjNvUlc0JpGO7GE0-RrlBwUCS78k-HiJg&callback=initMap&libraries=&v=weekly"
+      async>
+      </script>
+
+  </div>
+
+  <div class="footer">
+    <h2>Đặng Lê Minh Nhật: 1811119</h2>
+  </div>
+
+<!-- Code injected by live-server -->
+<script type="text/javascript">
+	// <![CDATA[  <-- For SVG support
+	if ('WebSocket' in window) {
+		(function () {
+			function refreshCSS() {
+				var sheets = [].slice.call(document.getElementsByTagName("link"));
+				var head = document.getElementsByTagName("head")[0];
+				for (var i = 0; i < sheets.length; ++i) {
+					var elem = sheets[i];
+					var parent = elem.parentElement || head;
+					parent.removeChild(elem);
+					var rel = elem.rel;
+					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+					}
+					parent.appendChild(elem);
+				}
+			}
+			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+			var address = protocol + window.location.host + window.location.pathname + '/ws';
+			var socket = new WebSocket(address);
+			socket.onmessage = function (msg) {
+				if (msg.data == 'reload') window.location.reload();
+				else if (msg.data == 'refreshcss') refreshCSS();
+			};
+			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+				console.log('Live reload enabled.');
+				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+			}
+		})();
+	}
+	else {
+		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+	}
+	// ]]>
+</script></body>
+
+</html>
