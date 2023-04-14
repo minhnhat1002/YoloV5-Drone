@@ -2,7 +2,11 @@
 """
 Common modules
 """
+<<<<<<< HEAD
 
+=======
+#import Flask
+>>>>>>> babca56 (Note)
 import json
 import math
 import platform
