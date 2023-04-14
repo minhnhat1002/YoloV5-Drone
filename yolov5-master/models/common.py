@@ -3,10 +3,14 @@
 Common modules
 """
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 #import Flask
 >>>>>>> babca56 (Note)
+=======
+#import Flask
+>>>>>>> origin/New_Update
 import json
 import math
 import platform
