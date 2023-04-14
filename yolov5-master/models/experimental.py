@@ -11,7 +11,19 @@ import torch.nn as nn
 from models.common import Conv
 from utils.downloads import attempt_download
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
 
+=======
+#Hello 1234
+>>>>>>> babca56 (Note)
+=======
+#Hello 1234
+>>>>>>> origin/New_Update
+=======
+#Hello 1234
+>>>>>>> 90d990af4efc642332301a2d039104313577506f
 class CrossConv(nn.Module):
     # Cross Convolution Downsample
     def __init__(self, c1, c2, k=3, s=1, g=1, e=1.0, shortcut=False):
