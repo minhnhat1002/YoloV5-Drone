@@ -4,6 +4,7 @@ Common modules
 """
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 #import Flask
@@ -11,6 +12,9 @@ Common modules
 =======
 #import Flask
 >>>>>>> origin/New_Update
+=======
+#import Flask
+>>>>>>> 90d990af4efc642332301a2d039104313577506f
 import json
 import math
 import platform
